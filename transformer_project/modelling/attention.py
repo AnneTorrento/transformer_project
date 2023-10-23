@@ -16,6 +16,7 @@ class Attention(nn.Module):
         q = self.q(x)
         k = self.k(x)
         v = self.v(x)
+        mask = self.mask(x)
         scores = q @ k.T / np.sqrt(q.shape[-1]) + self.mask
         attention = self.softmax(scores)
         weighted = attention @ v
